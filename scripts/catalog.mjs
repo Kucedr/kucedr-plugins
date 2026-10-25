@@ -29,12 +29,14 @@ const plugins = visible('plugins')
             execFileSync('gh', ['release', 'download', tag, '--pattern', file, '--dir', 'dist', '--repo', REPO], { stdio: 'inherit' });
         }
 
-        let icon;
-        if (m.icon) {
-            const out = `${id}${extname(m.icon)}`;
-            copyFileSync(join(dir, 'assets', m.icon), join('dist/icons', out));
-            icon = `${PAGES}/icons/${out}`;
-        }
+        const publishIcon = (file, suffix) => {
+            if (!file) return undefined;
+            const out = `${id}${suffix}${extname(file)}`;
+            copyFileSync(join(dir, 'assets', file), join('dist/icons', out));
+            return `${PAGES}/icons/${out}`;
+        };
+        const icon = publishIcon(m.icon, '');
+        const iconDark = publishIcon(m.iconDark, '-dark');
 
         // validate.mjs ran first and only allows provider fields beyond BASE_KEYS.
         const contains = [
@@ -51,6 +53,7 @@ const plugins = visible('plugins')
             author: m.author,
             categories: m.categories,
             icon,
+            iconDark,
             version: m.version,
             minAppVersion: m.minAppVersion,
             url: `https://github.com/${REPO}/releases/download/${tag}/${file}`,
