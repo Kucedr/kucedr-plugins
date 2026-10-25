@@ -1,0 +1,3 @@
+# Maintainers review everything. Add a line per plugin author when their plugin is first merged:
+# /plugins/<plugin-id>/   @<author-github-login>
+*                       @HaraldBregu

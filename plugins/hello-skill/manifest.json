@@ -1,0 +1,10 @@
+{
+    "schemaVersion": 5,
+    "id": "hello-skill",
+    "title": "Hello Skill",
+    "version": "1.0.0",
+    "description": "A minimal example plugin with one skill that greets the user.",
+    "categories": ["Example"],
+    "author": "Kucedr",
+    "icon": "icon.svg"
+}

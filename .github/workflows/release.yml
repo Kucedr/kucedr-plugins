@@ -1,0 +1,60 @@
+name: release
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+
+concurrency:
+    group: release
+    cancel-in-progress: false
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deploy.outputs.page_url }}
+        env:
+            GH_TOKEN: ${{ github.token }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+            - run: npm ci
+            - run: node scripts/validate.mjs
+
+            - name: Release new plugin versions
+              run: |
+                  mkdir -p dist
+                  for dir in plugins/*/; do
+                      id=$(basename "$dir")
+                      version=$(node -p "require('./plugins/$id/manifest.json').version")
+                      tag="$id-v$version"
+                      if gh release view "$tag" >/dev/null 2>&1; then
+                          echo "$tag exists, skipping"
+                          continue
+                      fi
+                      tgz="dist/$id-$version.tgz"
+                      tar -czf "$tgz" --exclude='.*' -C plugins "$id"
+                      gh release create "$tag" "$tgz" \
+                          --title "$(node -p "require('./plugins/$id/manifest.json').title") $version" \
+                          --notes "$(node -p "require('./plugins/$id/manifest.json').description")"
+                  done
+
+            - run: node scripts/catalog.mjs
+            - run: rm -f dist/*.tgz
+
+            - uses: actions/configure-pages@v5
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: dist
+            - id: deploy
+              uses: actions/deploy-pages@v4

@@ -1,0 +1,14 @@
+{
+    "name": "kucedr-plugins",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "validate": "node scripts/validate.mjs",
+        "catalog": "node scripts/catalog.mjs",
+        "test": "node scripts/test-validate.mjs"
+    },
+    "devDependencies": {
+        "gray-matter": "^4.0.3",
+        "zod": "^3.25.76"
+    }
+}
