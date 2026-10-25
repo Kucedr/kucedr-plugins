@@ -1,4 +1,4 @@
-// Self-check: validate.mjs passes on hello-skill and fails on each broken copy of it.
+// Self-check: validate.mjs passes on the hello-skill fixture and fails on each broken copy of it.
 // Usage: node scripts/test-validate.mjs
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
@@ -34,7 +34,7 @@ const cases = {
 for (const [name, [mutate, expected]] of Object.entries(cases)) {
     const cwd = mkdtempSync(join(tmpdir(), 'kucedr-'));
     const plugin = join(cwd, 'plugins/hello-skill');
-    cpSync('plugins/hello-skill', plugin, { recursive: true });
+    cpSync('scripts/fixtures/hello-skill', plugin, { recursive: true });
     mutate(plugin);
     const r = spawnSync(process.execPath, [validate], { cwd, encoding: 'utf8' });
     rmSync(cwd, { recursive: true, force: true });
