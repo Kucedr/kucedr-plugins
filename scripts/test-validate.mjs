@@ -13,6 +13,7 @@ const cases = {
     'passes as is': [() => {}, null],
     'folder name ≠ id': [(p) => renameSync(p, p + '-x'), /id "hello-skill" must equal the folder name/],
     'unknown manifest key': [(p) => json(join(p, 'manifest.json'), (m) => ({ ...m, extra: 1 })), /Unrecognized key/],
+    'missing author': [(p) => json(join(p, 'manifest.json'), ({ author, ...m }) => m), /manifest\.json: author/],
     'missing icon file': [(p) => rmSync(join(p, 'assets/icon.svg')), /icon assets\/icon\.svg does not exist/],
     symlink: [(p) => symlinkSync('/etc/hosts', join(p, 'assets/link')), /assets\/link is a symlink/],
     'skill name ≠ folder': [
