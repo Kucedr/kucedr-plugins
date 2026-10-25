@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "github",
 	"title": "GitHub",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "GitHub MCP server for repositories, issues, and pull requests.",
 	"categories": [
 		"MCP"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "github-light.svg",
 	"iconDark": "github-dark.svg",
 	"authentication": "oauth2",

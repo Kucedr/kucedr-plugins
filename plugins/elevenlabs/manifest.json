@@ -2,14 +2,14 @@
 	"schemaVersion": 5,
 	"id": "elevenlabs",
 	"title": "ElevenLabs",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Lifelike voices, transcription, and sound effects.",
 	"categories": [
 		"AUDIO",
 		"TTS",
 		"STT"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "elevenlabs-light.svg",
 	"iconDark": "elevenlabs-dark.svg",
 	"authentication": "api-key",

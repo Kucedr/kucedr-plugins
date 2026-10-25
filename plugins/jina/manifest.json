@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "jina",
 	"title": "Jina AI",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Embedding models for search and retrieval.",
 	"categories": [
 		"EMBEDDING"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "jina-light.svg",
 	"iconDark": "jina-dark.svg",
 	"authentication": "api-key",

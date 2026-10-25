@@ -25,7 +25,7 @@ const Manifest = z
         version: z.string().regex(SEMVER, 'must be semver'),
         description: text,
         categories: z.array(text).optional(),
-        author: text.optional(),
+        author: text,
         minAppVersion: z.string().regex(SEMVER, 'must be semver').optional(),
         icon: z.string().regex(ICON, 'must be a png, svg, jpg or webp file name').optional(),
         iconDark: z.string().regex(ICON, 'must be a png, svg, jpg or webp file name').optional(),

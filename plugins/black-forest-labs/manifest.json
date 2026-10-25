@@ -2,13 +2,13 @@
 	"schemaVersion": 5,
 	"id": "black-forest-labs",
 	"title": "Black Forest Labs",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "FLUX models for image generation and editing, plus video.",
 	"categories": [
 		"IMAGE",
 		"VIDEO"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "black-forest-labs-light.svg",
 	"iconDark": "black-forest-labs-dark.svg",
 	"authentication": "api-key",

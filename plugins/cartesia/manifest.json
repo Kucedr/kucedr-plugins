@@ -2,13 +2,13 @@
 	"schemaVersion": 5,
 	"id": "cartesia",
 	"title": "Cartesia",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Low-latency speech-to-text and text-to-speech voices.",
 	"categories": [
 		"TTS",
 		"STT"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "cartesia-light.svg",
 	"iconDark": "cartesia-dark.svg",
 	"authentication": "api-key",

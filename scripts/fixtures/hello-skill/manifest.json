@@ -5,6 +5,6 @@
     "version": "1.0.0",
     "description": "A minimal example plugin with one skill that greets the user.",
     "categories": ["Example"],
-    "author": "Kucedr",
+    "author": "Harald Bregu",
     "icon": "icon.svg"
 }

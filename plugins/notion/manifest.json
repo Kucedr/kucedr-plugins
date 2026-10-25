@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "notion",
 	"title": "Notion",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Notion MCP server for pages and databases.",
 	"categories": [
 		"MCP"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "notion.svg",
 	"authentication": "oauth2",
 	"icon_dark_url": "/assets/notion.svg",

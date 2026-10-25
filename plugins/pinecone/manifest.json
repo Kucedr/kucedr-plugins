@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "pinecone",
 	"title": "Pinecone",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Pinecone vector database for knowledge search.",
 	"categories": [
 		"DATABASE"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "pinecone-light.svg",
 	"iconDark": "pinecone-dark.svg",
 	"authentication": "api-key",

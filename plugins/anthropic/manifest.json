@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "anthropic",
 	"title": "Anthropic",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Claude chat models for writing, coding, and analysis.",
 	"categories": [
 		"LLM"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "anthropic-light.svg",
 	"iconDark": "anthropic-dark.svg",
 	"authentication": "api-key",

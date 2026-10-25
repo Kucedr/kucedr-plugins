@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "ideogram",
 	"title": "Ideogram",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Image generation with accurate text rendering.",
 	"categories": [
 		"IMAGE"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "ideogram-light.svg",
 	"iconDark": "ideogram-dark.svg",
 	"authentication": "api-key",

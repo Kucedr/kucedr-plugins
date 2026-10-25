@@ -2,7 +2,7 @@
 	"schemaVersion": 5,
 	"id": "qwen",
 	"title": "Alibaba / Qwen / Wan",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Qwen models for chat, images, video, speech, and embeddings.",
 	"categories": [
 		"LLM",
@@ -13,7 +13,7 @@
 		"REALTIME",
 		"EMBEDDING"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "qwen-light.svg",
 	"iconDark": "qwen-dark.svg",
 	"authentication": "api-key",

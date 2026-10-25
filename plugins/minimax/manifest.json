@@ -2,7 +2,7 @@
 	"schemaVersion": 5,
 	"id": "minimax",
 	"title": "MiniMax",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "MiniMax chat, video, image, speech, and music models.",
 	"categories": [
 		"LLM",
@@ -12,7 +12,7 @@
 		"TTS",
 		"STT"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "minimax.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://platform.minimax.io/user-center/basic-information/interface-key",

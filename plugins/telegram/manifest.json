@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "telegram",
 	"title": "Telegram",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Chat with your assistant through a Telegram bot.",
 	"categories": [
 		"BOT"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "telegram.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://core.telegram.org/bots#botfather",

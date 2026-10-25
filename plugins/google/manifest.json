@@ -2,7 +2,7 @@
 	"schemaVersion": 5,
 	"id": "google",
 	"title": "Google",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Gemini models for chat, images, video, speech, and embeddings, plus Gmail, Calendar, Drive, and Contacts.",
 	"categories": [
 		"LLM",
@@ -15,7 +15,7 @@
 		"EMBEDDING",
 		"MCP"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "google.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://aistudio.google.com/apikey",
