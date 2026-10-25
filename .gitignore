@@ -1,3 +1,6 @@
+# npm, at any depth (plugin apps and MCP servers may have their own packages)
 node_modules/
+npm-debug.log*
+
 dist/
 .DS_Store
