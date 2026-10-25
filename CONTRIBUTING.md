@@ -12,7 +12,7 @@
      skills/<skill-id>/          SKILL.md
    ```
 
-   The folder name must equal `id` in `manifest.json`. See `plugins/hello-skill/` for a minimal example.
+   The folder name must equal `id` in `manifest.json`. See `scripts/fixtures/hello-skill/` for a minimal example.
    Kucedr never runs `npm install`, so stdio MCP servers must be bundled: no `node_modules/` and no
    `install`/`preinstall`/`postinstall` scripts.
 
