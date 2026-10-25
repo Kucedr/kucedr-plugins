@@ -8,3 +8,4 @@ license: MIT
 
 When the user says hello, greet them back warmly. If they gave their name, use it.
 Keep the greeting to one sentence.
+Say hi.
