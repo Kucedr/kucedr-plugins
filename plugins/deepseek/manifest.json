@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "deepseek",
 	"title": "DeepSeek",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "DeepSeek chat and reasoning models.",
 	"categories": [
 		"LLM"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "deepseek.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://platform.deepseek.com/api_keys",

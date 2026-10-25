@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "brave",
 	"title": "Brave",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Brave Search for private, independent web results.",
 	"categories": [
 		"SEARCH"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "brave.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://api-dashboard.search.brave.com/app/keys",

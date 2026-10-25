@@ -2,14 +2,14 @@
 	"schemaVersion": 5,
 	"id": "kling",
 	"title": "Kuaishou / Kling AI",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Kling video, image, and audio generation.",
 	"categories": [
 		"IMAGE",
 		"VIDEO",
 		"AUDIO"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "kling.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://app.klingai.com/global/dev",

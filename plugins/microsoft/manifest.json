@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "microsoft",
 	"title": "Microsoft",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Microsoft 365 MCP servers for Outlook, Teams, OneDrive, SharePoint, Word, and Learn.",
 	"categories": [
 		"MCP"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "microsoft.svg",
 	"authentication": "oauth2",
 	"icon_dark_url": "/assets/microsoft.svg",

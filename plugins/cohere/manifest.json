@@ -2,13 +2,13 @@
 	"schemaVersion": 5,
 	"id": "cohere",
 	"title": "Cohere",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Command chat models and speech-to-text.",
 	"categories": [
 		"LLM",
 		"STT"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "cohere.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://dashboard.cohere.com/api-keys",

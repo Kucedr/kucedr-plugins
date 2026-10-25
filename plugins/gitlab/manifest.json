@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "gitlab",
 	"title": "GitLab",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "GitLab MCP server for projects, issues, and merge requests.",
 	"categories": [
 		"MCP"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "gitlab.svg",
 	"authentication": "oauth2",
 	"icon_dark_url": "/assets/gitlab.svg",

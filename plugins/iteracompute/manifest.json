@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "iteracompute",
 	"title": "iteraCompute",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Open and frontier models through one OpenAI-compatible API.",
 	"categories": [
 		"LLM"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "iteracompute.svg",
 	"authentication": "api-key",
 	"apiKeyUrl": "https://platform.iteracompute.com",

@@ -2,14 +2,14 @@
 	"schemaVersion": 5,
 	"id": "pika",
 	"title": "Pika",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Pika video generation with sound effects and voice.",
 	"categories": [
 		"VIDEO",
 		"AUDIO",
 		"TTS"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "pika-light.svg",
 	"iconDark": "pika-dark.svg",
 	"authentication": "api-key",

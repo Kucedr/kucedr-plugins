@@ -2,12 +2,12 @@
 	"schemaVersion": 5,
 	"id": "cloudflare",
 	"title": "Cloudflare",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Cloudflare R2 object storage for files.",
 	"categories": [
 		"STORAGE"
 	],
-	"author": "Kucedr",
+	"author": "Harald Bregu",
 	"icon": "cloudflare.svg",
 	"authentication": "api-key",
 	"icon_dark_url": "/assets/cloudflare.svg",
