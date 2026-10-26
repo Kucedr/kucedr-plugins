@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "workspaces": [
-        "plugins/*/tools/*"
+        "plugins/*/scripts/*"
     ],
     "scripts": {
         "build": "npm run build --workspaces --if-present",
