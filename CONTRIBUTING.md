@@ -10,6 +10,7 @@
      mcp/servers.json            optional: server configs keyed by id (stdio or http)
      mcp/<server-id>/            mcp.json (+ server files, stdio only)
      skills/<skill-id>/          SKILL.md
+     tools/<tool-id>/            manifest.json + INSTRUCTIONS.md + package.json (build to dist/), a Node script that prints HTML
    ```
 
    The folder name must equal `id` in `manifest.json`. See `scripts/fixtures/hello-skill/` for a minimal example.
