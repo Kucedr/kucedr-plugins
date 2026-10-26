@@ -42,6 +42,27 @@ const Skill = z.object({
     'allowed-tools': text.optional(),
 });
 
+const Tool = z
+    .object({
+        title: text,
+        description: text.pipe(z.string().max(1024)),
+        author: text.optional(),
+        metadata: z
+            .object({
+                version: text,
+                category: text,
+                entry: z
+                    .string()
+                    .refine((s) => !s.startsWith('/') && !s.includes('\\') && s.split('/').every((p) => p !== '' && p !== '.' && p !== '..'), 'must be a relative path'),
+            })
+            .strict(),
+        inputSchema: z.object({ type: z.literal('object') }).passthrough(),
+        fence: z.string().regex(ID, 'must be kebab-case').optional(),
+        height: z.number().int().min(80).max(2000).optional(),
+    })
+    .strict();
+const MAX_INSTRUCTIONS = 4 * 1024;
+
 const zodErrors = (prefix, error) =>
     error.issues.map((i) => `${prefix}${i.path.length ? i.path.join('.') + ' ' : ''}${i.message}`);
 
@@ -125,6 +146,25 @@ function checkSkill(dir, skillId, errors) {
     else if (data.name !== skillId) errors.push(`${p}: name "${data.name}" must equal the folder name "${skillId}"`);
 }
 
+function checkTool(dir, toolId, errors) {
+    const p = `tools/${toolId}/`;
+    if (!ID.test(toolId)) errors.push(`${p} folder name must be kebab-case`);
+    const file = join(dir, 'manifest.json');
+    if (!existsSync(file)) return errors.push(`${p}manifest.json is missing`);
+    let t;
+    try {
+        t = readJson(file);
+    } catch {
+        return errors.push(`${p}manifest.json is not valid JSON`);
+    }
+    const r = Tool.safeParse(t);
+    if (!r.success) return errors.push(...zodErrors(`${p}manifest.json: `, r.error));
+    if (!existsSync(join(dir, t.metadata.entry))) errors.push(`${p}${t.metadata.entry} (metadata.entry) does not exist`);
+    const instructions = join(dir, 'INSTRUCTIONS.md');
+    if (!existsSync(instructions)) errors.push(`${p}INSTRUCTIONS.md is missing`);
+    else if (lstatSync(instructions).size > MAX_INSTRUCTIONS) errors.push(`${p}INSTRUCTIONS.md is larger than 4 KB`);
+}
+
 function checkPlugin(id) {
     const dir = join(ROOT, id);
     const errors = [];
@@ -161,6 +201,7 @@ function checkPlugin(id) {
     const apps = folders('apps');
     const mcpDirs = folders('mcp', ['servers.json']);
     const skills = folders('skills');
+    const tools = folders('tools');
 
     let mcpKeys = [];
     const serversFile = join(dir, 'mcp', 'servers.json');
@@ -182,10 +223,11 @@ function checkPlugin(id) {
 
     for (const a of apps) checkApp(join(dir, 'apps', a), a, errors);
     for (const s of skills) checkSkill(join(dir, 'skills', s), s, errors);
+    for (const t of tools) checkTool(join(dir, 'tools', t), t, errors);
 
     const isProvider = PROVIDER_KEYS.some((k) => k in m);
-    if (!apps.length && !mcpDirs.length && !mcpKeys.length && !skills.length && !isProvider) {
-        errors.push('must contain at least one app, MCP server, skill, or provider field');
+    if (!apps.length && !mcpDirs.length && !mcpKeys.length && !skills.length && !tools.length && !isProvider) {
+        errors.push('must contain at least one app, MCP server, skill, tool, or provider field');
     }
     return errors;
 }

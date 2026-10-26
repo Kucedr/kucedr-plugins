@@ -2,7 +2,11 @@
     "name": "kucedr-plugins",
     "private": true,
     "type": "module",
+    "workspaces": [
+        "plugins/*/tools/*"
+    ],
     "scripts": {
+        "build": "npm run build --workspaces --if-present",
         "validate": "node scripts/validate.mjs",
         "catalog": "node scripts/catalog.mjs",
         "test": "node scripts/test-validate.mjs"
