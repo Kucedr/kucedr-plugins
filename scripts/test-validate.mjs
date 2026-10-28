@@ -29,6 +29,9 @@ const cases = {
         },
         null,
     ],
+    'models manifest': [(p) => (mkdirSync(join(p, 'models')), writeFileSync(join(p, 'models/manifest.json'), '[{"id":"m","name":"M"}]')), null],
+    'models manifest missing': [(p) => mkdirSync(join(p, 'models')), /models\/manifest\.json is missing/],
+    'models without name': [(p) => (mkdirSync(join(p, 'models')), writeFileSync(join(p, 'models/manifest.json'), '[{"id":"m"}]')), /models\/manifest\.json: 0\.name/],
     'mcp manifest missing': [(p) => mkdirSync(join(p, 'mcp/echo'), { recursive: true }), /mcp\/echo\/manifest\.json is missing/],
     'mcp neither url nor command': [
         (p) => {

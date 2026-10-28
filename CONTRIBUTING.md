@@ -9,6 +9,7 @@
      apps/<app-id>/              manifest.json + index.html, js, css
      mcp/<server-id>/            manifest.json (id, name, description, plus url for remote or command for local)
                                  + server files, local only; command runs from this folder
+     models/manifest.json        provider only: array of every model it offers (id, name, type, ...)
      skills/<skill-id>/          SKILL.md
      scripts/<script-id>/        manifest.json + package.json (build to dist/), a Node script that prints HTML
    ```

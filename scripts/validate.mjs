@@ -12,7 +12,7 @@ const SEMVER = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/;
 const ICON = /^[\w-]+\.(?:png|svg|jpe?g|webp)$/;
 const MAX_FILE = 256 * 1024;
 const PROVIDER_KEYS = [
-    'authentication', 'apiKeyUrl', 'icon_dark_url', 'icon_light_url', 'instructions', 'models',
+    'authentication', 'apiKeyUrl', 'icon_dark_url', 'icon_light_url', 'instructions',
     'vector_databases', 'web_search', 'storage', 'bots', 'settings',
 ];
 
@@ -74,6 +74,9 @@ const McpServer = z
     })
     .passthrough()
     .refine((m) => !m.url !== !m.command, 'needs exactly one of url (remote) or command (local)');
+
+// models/manifest.json: every model the provider offers.
+const Models = z.array(z.object({ id: text, name: text }).passthrough()).nonempty();
 
 const zodErrors =(prefix, error) =>
     error.issues.map((i) => `${prefix}${i.path.length ? i.path.join('.') + ' ' : ''}${i.message}`);
@@ -231,11 +234,26 @@ function checkPlugin(id) {
         else if (m.id !== id) errors.push(`${p}: id "${m.id}" must equal the folder name "${id}"`);
     }
 
+    const hasModels = existsSync(join(dir, 'models'));
+    if (hasModels) {
+        const p = 'models/manifest.json';
+        const file = join(dir, p);
+        if (!existsSync(file)) errors.push(`${p} is missing`);
+        else {
+            try {
+                const r = Models.safeParse(readJson(file));
+                if (!r.success) errors.push(...zodErrors(`${p}: `, r.error));
+            } catch {
+                errors.push(`${p} is not valid JSON`);
+            }
+        }
+    }
+
     for (const a of apps) checkApp(join(dir, 'apps', a), a, errors);
     for (const s of skills) checkSkill(join(dir, 'skills', s), s, errors);
     for (const s of scripts) checkScript(join(dir, 'scripts', s), s, errors);
 
-    const isProvider = PROVIDER_KEYS.some((k) => k in m);
+    const isProvider = hasModels || PROVIDER_KEYS.some((k) => k in m);
     if (!apps.length && !mcpDirs.length && !skills.length && !scripts.length && !isProvider) {
         errors.push('must contain at least one app, MCP server, skill, script, or provider field');
     }
