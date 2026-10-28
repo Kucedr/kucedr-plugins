@@ -1,0 +1,13 @@
+{
+	"id": "microsoft-word",
+	"name": "Microsoft Word",
+	"description": "Create and read documents.",
+	"authentication": "oauth2",
+	"url": "https://agent365.svc.cloud.microsoft/agents/tenants/{tenantId}/servers/mcp_WordServer",
+	"scopes": [],
+	"icon_dark_url": "/assets/microsoft-word.svg",
+	"icon_light_url": "/assets/microsoft-word.svg",
+	"oauth": {
+		"client_id_setting": "client_id"
+	}
+}

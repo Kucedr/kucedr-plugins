@@ -42,7 +42,7 @@ const plugins = visible('plugins')
         const contains = [
             visible(join(dir, 'apps')).length && 'apps',
             visible(join(dir, 'mcp')).length && 'mcp',
-            Object.keys(m).some((k) => !BASE_KEYS.has(k)) && 'providers',
+            (Object.keys(m).some((k) => !BASE_KEYS.has(k)) || visible(join(dir, 'models')).length) && 'providers',
             visible(join(dir, 'skills')).length && 'skills',
         ].filter(Boolean);
 

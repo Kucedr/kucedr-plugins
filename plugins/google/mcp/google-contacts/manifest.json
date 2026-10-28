@@ -1,0 +1,23 @@
+{
+	"id": "google-contacts",
+	"name": "Google Contacts",
+	"description": "Find people, manage contacts, and browse directories.",
+	"authentication": "oauth2",
+	"url": "https://people.googleapis.com/mcp/v1",
+	"scopes": [
+		"https://www.googleapis.com/auth/directory.readonly",
+		"https://www.googleapis.com/auth/userinfo.profile",
+		"https://www.googleapis.com/auth/contacts.readonly"
+	],
+	"oauth": {
+		"client_id_setting": "client_id",
+		"client_secret_setting": "client_secret",
+		"authorization_params": {
+			"access_type": "offline",
+			"prompt": "consent select_account"
+		},
+		"google_fetch": true
+	},
+	"icon_dark_url": "/assets/google-contact.svg",
+	"icon_light_url": "/assets/google-contact.svg"
+}
