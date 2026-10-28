@@ -1,0 +1,37 @@
+{
+	"title": "Dither",
+	"description": "Render an animated dithered surface (gradient, glow, noise, waves, plasma, ripples or a custom GLSL field) in theme colours, with an optional title.",
+	"author": "Harald Bregu",
+	"license": "MIT. LICENSE.txt has complete terms",
+	"metadata": {
+		"version": "1.0.0",
+		"category": "design",
+		"entry": "dist/index.mjs"
+	},
+	"inputSchema": {
+		"type": "object",
+		"properties": {
+			"pattern": { "type": "string", "enum": ["gradient", "glow", "noise", "waves", "plasma", "ripples"] },
+			"field": {
+				"type": "string",
+				"maxLength": 8000,
+				"description": "Optional GLSL defining float field(vec2 uv, vec2 res, float t) that returns a tone in [0, 1]. Replaces pattern."
+			},
+			"title": { "type": "string", "description": "Optional heading. Omit when no title is needed." },
+			"description": { "type": "string" },
+			"colors": {
+				"type": "array",
+				"minItems": 1,
+				"maxItems": 4,
+				"description": "Ink colours from light to dense tones: palette names (ink, blue, purple, green, pink, orange, red, grey) or CSS colours. Default [\"ink\"].",
+				"items": { "type": "string" }
+			},
+			"matrix": { "type": "string", "enum": ["bayer2", "bayer4", "bayer8", "blue-noise"] },
+			"cell": { "type": "number", "minimum": 1, "maximum": 16, "description": "Dot size in CSS pixels. Default 3." },
+			"speed": { "type": "number", "minimum": 0, "maximum": 5, "description": "Time multiplier. Default 1." },
+			"animate": { "type": "boolean", "description": "false holds a still frame. Default true." }
+		}
+	},
+	"fence": "dither",
+	"height": 320
+}

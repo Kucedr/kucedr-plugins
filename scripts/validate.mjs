@@ -47,6 +47,7 @@ const Script = z
         title: text,
         description: text.pipe(z.string().max(1024)),
         author: text.optional(),
+        license: text.optional(),
         metadata: z
             .object({
                 version: text,

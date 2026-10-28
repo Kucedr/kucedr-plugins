@@ -1,0 +1,10 @@
+[
+	{ "name": "Glow", "theme": "light", "input": { "pattern": "glow", "colors": ["blue"] } },
+	{ "name": "Plasma, two colours", "theme": "dark", "input": { "pattern": "plasma", "title": "Plasma", "description": "Purple into pink.", "colors": ["purple", "pink"], "cell": 4 } },
+	{ "name": "Ripples", "theme": "light", "input": { "pattern": "ripples", "colors": ["green"], "matrix": "bayer8" } },
+	{ "name": "Waves, blue noise", "theme": "dark", "input": { "pattern": "waves", "title": "Waves", "colors": ["blue", "purple"], "matrix": "blue-noise" } },
+	{ "name": "Noise, still", "theme": "light", "input": { "pattern": "noise", "colors": ["orange", "red"], "animate": false } },
+	{ "name": "Gradient, big cells", "theme": "dark", "input": { "pattern": "gradient", "colors": ["ink"], "cell": 8, "matrix": "bayer2" } },
+	{ "name": "Custom field", "theme": "dark", "input": { "title": "Pulsing circle", "field": "float field(vec2 uv, vec2 res, float t) { vec2 p = vec2(uv.x * res.x / res.y, uv.y); float d = length(p - vec2(0.5 * res.x / res.y, 0.5)); return smoothstep(0.45, 0.1, d) * (0.85 + 0.15 * sin(t * 2.0)); }", "colors": ["orange"] } },
+	{ "name": "Ripples, blue noise", "theme": "dark", "input": { "pattern": "ripples", "title": "Ripples", "colors": ["pink", "orange"], "matrix": "blue-noise", "speed": 2 } }
+]
