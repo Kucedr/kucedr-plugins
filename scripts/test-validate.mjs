@@ -20,6 +20,23 @@ const cases = {
         (p) => renameSync(join(p, 'skills/hello-skill'), join(p, 'skills/other')),
         /name "hello-skill" must equal the folder name "other"/,
     ],
+    'mcp local + remote': [
+        (p) => {
+            mkdirSync(join(p, 'mcp/echo'), { recursive: true });
+            mkdirSync(join(p, 'mcp/docs'), { recursive: true });
+            writeFileSync(join(p, 'mcp/echo/manifest.json'), JSON.stringify({ id: 'echo', name: 'E', description: 'D', command: 'node', args: ['index.js'] }));
+            writeFileSync(join(p, 'mcp/docs/manifest.json'), JSON.stringify({ id: 'docs', name: 'D', description: 'D', url: 'https://example.com/mcp' }));
+        },
+        null,
+    ],
+    'mcp manifest missing': [(p) => mkdirSync(join(p, 'mcp/echo'), { recursive: true }), /mcp\/echo\/manifest\.json is missing/],
+    'mcp neither url nor command': [
+        (p) => {
+            mkdirSync(join(p, 'mcp/echo'), { recursive: true });
+            writeFileSync(join(p, 'mcp/echo/manifest.json'), JSON.stringify({ id: 'echo', name: 'E', description: 'D' }));
+        },
+        /needs exactly one of url \(remote\) or command \(local\)/,
+    ],
     'app entry missing': [
         (p) => {
             mkdirSync(join(p, 'apps/counter'), { recursive: true });

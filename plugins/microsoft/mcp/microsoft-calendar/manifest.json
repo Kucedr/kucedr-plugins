@@ -1,0 +1,13 @@
+{
+	"id": "microsoft-calendar",
+	"name": "Outlook Calendar",
+	"description": "Manage events and availability.",
+	"authentication": "oauth2",
+	"url": "https://agent365.svc.cloud.microsoft/agents/tenants/{tenantId}/servers/mcp_CalendarTools",
+	"scopes": [],
+	"icon_dark_url": "/assets/outlook-calendar.svg",
+	"icon_light_url": "/assets/outlook-calendar.svg",
+	"oauth": {
+		"client_id_setting": "client_id"
+	}
+}

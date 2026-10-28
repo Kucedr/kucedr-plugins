@@ -1,0 +1,8 @@
+{
+	"id": "microsoft-learn",
+	"name": "Microsoft Learn",
+	"description": "Search Microsoft documentation and code samples.",
+	"authentication": "none",
+	"url": "https://learn.microsoft.com/api/mcp",
+	"scopes": []
+}

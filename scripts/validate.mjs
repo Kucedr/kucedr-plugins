@@ -13,7 +13,7 @@ const ICON = /^[\w-]+\.(?:png|svg|jpe?g|webp)$/;
 const MAX_FILE = 256 * 1024;
 const PROVIDER_KEYS = [
     'authentication', 'apiKeyUrl', 'icon_dark_url', 'icon_light_url', 'instructions', 'models',
-    'mcp_servers', 'vector_databases', 'web_search', 'storage', 'bots', 'settings',
+    'vector_databases', 'web_search', 'storage', 'bots', 'settings',
 ];
 
 const text = z.string().refine((s) => s.trim() !== '', 'must not be empty');
@@ -47,7 +47,6 @@ const Script = z
         title: text,
         description: text.pipe(z.string().max(1024)),
         author: text.optional(),
-        license: text.optional(),
         metadata: z
             .object({
                 version: text,
@@ -62,9 +61,21 @@ const Script = z
         height: z.number().int().min(80).max(2000).optional(),
     })
     .strict();
-const MAX_INSTRUCTIONS = 4 * 1024;
 
-const zodErrors = (prefix, error) =>
+// mcp/<id>/manifest.json. Remote servers have a url; local ones a command run from their folder.
+const McpServer = z
+    .object({
+        id: z.string(),
+        name: text,
+        description: text,
+        url: z.string().startsWith('https://', 'must be https').optional(),
+        command: text.optional(),
+        args: z.array(z.string()).optional(),
+    })
+    .passthrough()
+    .refine((m) => !m.url !== !m.command, 'needs exactly one of url (remote) or command (local)');
+
+const zodErrors =(prefix, error) =>
     error.issues.map((i) => `${prefix}${i.path.length ? i.path.join('.') + ' ' : ''}${i.message}`);
 
 const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
@@ -161,9 +172,6 @@ function checkScript(dir, scriptId, errors) {
     const r = Script.safeParse(t);
     if (!r.success) return errors.push(...zodErrors(`${p}manifest.json: `, r.error));
     if (!existsSync(join(dir, t.metadata.entry))) errors.push(`${p}${t.metadata.entry} (metadata.entry) does not exist`);
-    const instructions = join(dir, 'INSTRUCTIONS.md');
-    if (!existsSync(instructions)) errors.push(`${p}INSTRUCTIONS.md is missing`);
-    else if (lstatSync(instructions).size > MAX_INSTRUCTIONS) errors.push(`${p}INSTRUCTIONS.md is larger than 4 KB`);
 }
 
 function checkPlugin(id) {
@@ -200,26 +208,27 @@ function checkPlugin(id) {
             return false;
         });
     const apps = folders('apps');
-    const mcpDirs = folders('mcp', ['servers.json']);
+    const mcpDirs = folders('mcp');
     const skills = folders('skills');
     const scripts = folders('scripts');
 
-    let mcpKeys = [];
-    const serversFile = join(dir, 'mcp', 'servers.json');
-    if (existsSync(serversFile)) {
-        try {
-            const s = readJson(serversFile);
-            if (typeof s !== 'object' || s === null || Array.isArray(s)) errors.push('mcp/servers.json must be a JSON object');
-            else mcpKeys = Object.keys(s);
-        } catch {
-            errors.push('mcp/servers.json is not valid JSON');
+    for (const id of mcpDirs) {
+        const p = `mcp/${id}/manifest.json`;
+        const file = join(dir, p);
+        if (!existsSync(file)) {
+            errors.push(`${p} is missing`);
+            continue;
         }
-    }
-    for (const k of mcpKeys) if (mcpDirs.includes(k)) errors.push(`mcp server "${k}" is both a folder and a key in mcp/servers.json`);
-    for (const s of mcpDirs) {
-        const file = join(dir, 'mcp', s, 'mcp.json');
-        if (!existsSync(file)) errors.push(`mcp/${s}/mcp.json is missing`);
-        else try { readJson(file); } catch { errors.push(`mcp/${s}/mcp.json is not valid JSON`); }
+        let m;
+        try {
+            m = readJson(file);
+        } catch {
+            errors.push(`${p} is not valid JSON`);
+            continue;
+        }
+        const r = McpServer.safeParse(m);
+        if (!r.success) errors.push(...zodErrors(`${p}: `, r.error));
+        else if (m.id !== id) errors.push(`${p}: id "${m.id}" must equal the folder name "${id}"`);
     }
 
     for (const a of apps) checkApp(join(dir, 'apps', a), a, errors);
@@ -227,7 +236,7 @@ function checkPlugin(id) {
     for (const s of scripts) checkScript(join(dir, 'scripts', s), s, errors);
 
     const isProvider = PROVIDER_KEYS.some((k) => k in m);
-    if (!apps.length && !mcpDirs.length && !mcpKeys.length && !skills.length && !scripts.length && !isProvider) {
+    if (!apps.length && !mcpDirs.length && !skills.length && !scripts.length && !isProvider) {
         errors.push('must contain at least one app, MCP server, skill, script, or provider field');
     }
     return errors;

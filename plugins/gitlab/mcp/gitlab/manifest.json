@@ -1,0 +1,10 @@
+{
+	"id": "gitlab",
+	"name": "GitLab",
+	"description": "Browse projects, manage issues, and review merge requests.",
+	"authentication": "oauth2",
+	"url": "https://gitlab.com/api/v4/mcp",
+	"scopes": [
+		"mcp"
+	]
+}

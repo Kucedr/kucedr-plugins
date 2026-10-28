@@ -1,16 +1,33 @@
+import { Component } from 'react';
 import { createRoot } from 'react-dom/client';
-import { DitherShader } from '@/lib/dither/shader';
-import { FIELDS } from './fields.mjs';
+import { CATALOG } from './catalog.mjs';
+import { REGISTRY } from './registry.jsx';
 
-const input = JSON.parse(document.getElementById('dither-input').textContent);
+const PLACES = {
+	fill: 'relative min-h-0 flex-1 overflow-hidden rounded-lg',
+	stretch: 'flex min-h-0 flex-1 flex-col justify-center-safe overflow-auto [scrollbar-width:thin]',
+	center: 'flex min-h-0 flex-1 items-center-safe justify-center-safe overflow-auto [scrollbar-width:thin]',
+};
+
+class Boundary extends Component {
+	state = { error: null };
+	static getDerivedStateFromError(error) {
+		return { error };
+	}
+	render() {
+		if (!this.state.error) return this.props.children;
+		return <p className="m-auto text-destructive">Could not render: {this.state.error.message}</p>;
+	}
+}
+
+const { component, props = {} } = JSON.parse(document.getElementById('dither-input').textContent);
+const Dither = REGISTRY[component];
+const { place } = CATALOG[component];
+
 createRoot(document.getElementById('dither')).render(
-	<DitherShader
-		className="dither"
-		field={input.field ?? FIELDS[input.pattern]}
-		palette={['--dither-paper', ...(input.colors ?? ['ink'])]}
-		matrix={input.matrix}
-		cell={input.cell}
-		speed={input.speed}
-		animate={input.animate}
-	/>
+	<Boundary>
+		<div className={PLACES[place]}>
+			<Dither {...props} className={place === 'fill' ? 'absolute inset-0' : props.className} />
+		</div>
+	</Boundary>
 );

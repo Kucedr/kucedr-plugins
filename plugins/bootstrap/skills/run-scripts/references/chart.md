@@ -1,3 +1,5 @@
+# chart
+
 Use when the user asks for a chart, graph or plot, or when numbers read better visually than as text:
 
 - **line** or **area**: a trend over time (months, quarters, years).

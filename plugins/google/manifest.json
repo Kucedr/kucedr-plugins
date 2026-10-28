@@ -2,7 +2,7 @@
 	"schemaVersion": 5,
 	"id": "google",
 	"title": "Google",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Gemini models for chat, images, video, speech, and embeddings, plus Gmail, Calendar, Drive, and Contacts.",
 	"categories": [
 		"LLM",
@@ -1269,100 +1269,6 @@
 				"contextWindow": 2048,
 				"maxInputTokens": 2048
 			}
-		}
-	],
-	"mcp_servers": [
-		{
-			"id": "gmail",
-			"name": "Gmail",
-			"description": "Search email, manage messages, and organize your inbox.",
-			"authentication": "oauth2",
-			"url": "https://gmailmcp.googleapis.com/mcp/v1",
-			"scopes": [
-				"https://www.googleapis.com/auth/gmail.readonly",
-				"https://www.googleapis.com/auth/gmail.compose",
-				"https://www.googleapis.com/auth/gmail.modify"
-			],
-			"oauth": {
-				"client_id_setting": "client_id",
-				"client_secret_setting": "client_secret",
-				"authorization_params": {
-					"access_type": "offline",
-					"prompt": "consent select_account"
-				},
-				"google_fetch": true
-			},
-			"icon_dark_url": "/assets/gmail.svg",
-			"icon_light_url": "/assets/gmail.svg"
-		},
-		{
-			"id": "google-calendar",
-			"name": "Google Calendar",
-			"description": "Find events, manage calendars, and organize your schedule.",
-			"authentication": "oauth2",
-			"url": "https://calendarmcp.googleapis.com/mcp/v1",
-			"scopes": [
-				"https://www.googleapis.com/auth/calendar.calendarlist.readonly",
-				"https://www.googleapis.com/auth/calendar.events.freebusy",
-				"https://www.googleapis.com/auth/calendar.events.readonly",
-				"https://www.googleapis.com/auth/calendar.events"
-			],
-			"oauth": {
-				"client_id_setting": "client_id",
-				"client_secret_setting": "client_secret",
-				"authorization_params": {
-					"access_type": "offline",
-					"prompt": "consent select_account"
-				},
-				"google_fetch": true
-			},
-			"icon_dark_url": "/assets/google-calendar.svg",
-			"icon_light_url": "/assets/google-calendar.svg"
-		},
-		{
-			"id": "google-drive",
-			"name": "Google Drive",
-			"description": "Search, organize, and manage your files in Google Drive.",
-			"authentication": "oauth2",
-			"url": "https://drivemcp.googleapis.com/mcp/v1",
-			"scopes": [
-				"https://www.googleapis.com/auth/drive.readonly",
-				"https://www.googleapis.com/auth/drive.file"
-			],
-			"oauth": {
-				"client_id_setting": "client_id",
-				"client_secret_setting": "client_secret",
-				"authorization_params": {
-					"access_type": "offline",
-					"prompt": "consent select_account"
-				},
-				"google_fetch": true
-			},
-			"icon_dark_url": "/assets/google-drive.svg",
-			"icon_light_url": "/assets/google-drive.svg"
-		},
-		{
-			"id": "google-contacts",
-			"name": "Google Contacts",
-			"description": "Find people, manage contacts, and browse directories.",
-			"authentication": "oauth2",
-			"url": "https://people.googleapis.com/mcp/v1",
-			"scopes": [
-				"https://www.googleapis.com/auth/directory.readonly",
-				"https://www.googleapis.com/auth/userinfo.profile",
-				"https://www.googleapis.com/auth/contacts.readonly"
-			],
-			"oauth": {
-				"client_id_setting": "client_id",
-				"client_secret_setting": "client_secret",
-				"authorization_params": {
-					"access_type": "offline",
-					"prompt": "consent select_account"
-				},
-				"google_fetch": true
-			},
-			"icon_dark_url": "/assets/google-contact.svg",
-			"icon_light_url": "/assets/google-contact.svg"
 		}
 	]
 }

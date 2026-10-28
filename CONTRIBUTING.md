@@ -7,10 +7,10 @@
      manifest.json               plugin info (schemaVersion 5), plus provider services when it is a provider
      assets/                     images; the icons named in manifest.json live here
      apps/<app-id>/              manifest.json + index.html, js, css
-     mcp/servers.json            optional: server configs keyed by id (stdio or http)
-     mcp/<server-id>/            mcp.json (+ server files, stdio only)
+     mcp/<server-id>/            manifest.json (id, name, description, plus url for remote or command for local)
+                                 + server files, local only; command runs from this folder
      skills/<skill-id>/          SKILL.md
-     scripts/<script-id>/        manifest.json + INSTRUCTIONS.md + package.json (build to dist/), a Node script that prints HTML
+     scripts/<script-id>/        manifest.json + package.json (build to dist/), a Node script that prints HTML
    ```
 
    The folder name must equal `id` in `manifest.json`. See `scripts/fixtures/hello-skill/` for a minimal example.

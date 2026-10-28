@@ -1,6 +1,7 @@
 // Runs the dither script on each example input and shows what it prints.
 import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { CATALOG } from '../src/catalog.mjs';
 import examples from './examples.json';
 
 async function runScript(payload) {
@@ -20,11 +21,11 @@ function Output({ payload }) {
 	}, [JSON.stringify(payload)]);
 	if (!result) return <div className="output">Running…</div>;
 	if (!result.ok) return <pre className="output error">{result.text}</pre>;
-	return <iframe className="output" title="Script output" srcDoc={result.text} />;
+	return <iframe className="output" title="Script output" loading="lazy" srcDoc={result.text} />;
 }
 
 function Playground() {
-	const { theme, input } = examples[1];
+	const { theme, input } = examples.find((example) => example.name === 'aurora');
 	const [text, setText] = useState(JSON.stringify({ theme, input }, null, 2));
 	const [payload, setPayload] = useState(() => JSON.parse(text));
 	const [parseError, setParseError] = useState(null);
@@ -56,18 +57,27 @@ function App() {
 				prints.
 			</p>
 			<Playground />
-			<div className="grid">
-				{examples.map(({ name, theme, input }) => (
-					<article className="card" key={name}>
-						<h2>{name}</h2>
-						<Output payload={{ theme, input }} />
-						<details>
-							<summary>Input</summary>
-							<pre>{JSON.stringify({ theme, input }, null, 2)}</pre>
-						</details>
-					</article>
-				))}
-			</div>
+			{Object.entries(Object.groupBy(examples, (example) => CATALOG[example.input.component].group)).map(
+				([group, items]) => (
+					<section key={group}>
+						<h2 className="group">
+							{group} ({items.length})
+						</h2>
+						<div className="grid">
+							{items.map(({ name, theme, input }) => (
+								<article className="card" key={name}>
+									<h2>{name}</h2>
+									<Output payload={{ theme, input }} />
+									<details>
+										<summary>Input</summary>
+										<pre>{JSON.stringify({ theme, input }, null, 2)}</pre>
+									</details>
+								</article>
+							))}
+						</div>
+					</section>
+				)
+			)}
 		</main>
 	);
 }

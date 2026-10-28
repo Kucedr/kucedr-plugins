@@ -1,3 +1,5 @@
-// ponytail: stands in for shadcn's cn(); the static page has no Tailwind to merge.
-export const cn = (...classes: (string | false | null | undefined)[]) =>
-	classes.filter(Boolean).join(' ');
+import { clsx } from 'clsx';
+import type { ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));

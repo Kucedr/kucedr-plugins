@@ -1,0 +1,23 @@
+{
+	"id": "gmail",
+	"name": "Gmail",
+	"description": "Search email, manage messages, and organize your inbox.",
+	"authentication": "oauth2",
+	"url": "https://gmailmcp.googleapis.com/mcp/v1",
+	"scopes": [
+		"https://www.googleapis.com/auth/gmail.readonly",
+		"https://www.googleapis.com/auth/gmail.compose",
+		"https://www.googleapis.com/auth/gmail.modify"
+	],
+	"oauth": {
+		"client_id_setting": "client_id",
+		"client_secret_setting": "client_secret",
+		"authorization_params": {
+			"access_type": "offline",
+			"prompt": "consent select_account"
+		},
+		"google_fetch": true
+	},
+	"icon_dark_url": "/assets/gmail.svg",
+	"icon_light_url": "/assets/gmail.svg"
+}
